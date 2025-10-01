@@ -1,0 +1,61 @@
+/* Header Styles */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #2563eb;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #3b82f6;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #3b82f6;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title id="page-title">Neekshith - Student Portfolio</title>
+    <meta id="page-description" name="description" content="Portfolio of Neekshith - Computer Science Student passionate about web development and creating innovative digital solutions." />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/cards.css" />
+    <link rel="stylesheet" href="css/skills.css" />
+    <link rel="stylesheet" href="css/page-content.css" />
+    <link rel="stylesheet" href="css/resume.css" />
+    <link rel="stylesheet" href="css/bio.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/faq.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/print.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <div id="main-content"></div>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load Components and Scripts -->
+    <script src="js/main.js" type="module"></script>
+    <script>
+        (function() {
+            // Get current page from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentPage = urlParams.get('page') || 'home';
+
+            // Page configuration
+            const pageConfig = {
+                home: {
+                    title: 'Neekshith - Student Portfolio',
+                    description: 'Portfolio of Neekshith - Computer Science Student passionate about web development and creating innovative digital solutions.',
+                    content: 'pages/home.html'
+                },
+                bio: {
+                    title: 'Bio - Neekshith',
+                    description: 'Personal biography of Neekshith - Learn about my background, interests, and journey in Computer Science.',
+                    content: 'pages/bio.html'
+                },
+                resume: {
+                    title: 'Resume - Neekshith',
+                    description: 'Professional resume of Neekshith - Computer Science Student with academic achievements and technical skills.',
+                    content: 'pages/resume.html'
+                },
+                contact: {
+                    title: 'Contact - Neekshith',
+                    description: 'Get in touch with Neekshith - Computer Science Student. Contact for collaborations, projects, or just a friendly chat about technology.',
+                    content: 'pages/contact.html'
+                }
+            };
+
+            // Update page title and meta
+            const config = pageConfig[currentPage] || pageConfig.home;
+            document.getElementById('page-title').textContent = config.title;
+            document.getElementById('page-description').content = config.description;
+
+            // Load header component
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                });
+
+            // Load page content
+            fetch(config.content)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('main-content').innerHTML = data;
+                    // Initialize FAQ if on contact page
+                    if (currentPage === 'contact') {
+                        // Wait a bit for DOM to update
+                        setTimeout(() => {
+                            if (typeof window.initializeFAQ === 'function') {
+                                window.initializeFAQ();
+                            }
+                        }, 100);
+                    }
+                });
+
+            // Load footer component
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+        })();
+    </script>
+</body>
+</html>

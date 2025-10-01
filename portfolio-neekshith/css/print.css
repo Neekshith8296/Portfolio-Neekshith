@@ -1,0 +1,19 @@
+/* Print Styles */
+@media print {
+    .header,
+    .footer,
+    .nav-buttons,
+    .hero-buttons,
+    .btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .page-content {
+        padding: 0;
+    }
+}

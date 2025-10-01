@@ -1,0 +1,153 @@
+/* Bio Styles */
+.bio-content {
+    max-width: 4xl;
+    margin: 0 auto;
+}
+
+.bio-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    margin-bottom: 2rem;
+}
+
+.story-content p {
+    color: #475569;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.interest-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+}
+
+.interest-item i {
+    font-size: 2.5rem;
+    color: #3b82f6;
+    margin-bottom: 1rem;
+}
+
+.interest-item h3 {
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+}
+
+.interest-item p {
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.goals-content {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .goals-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.goal-item h3 {
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.goal-item ul {
+    list-style: none;
+}
+
+.goal-item li {
+    padding: 0.5rem 0;
+    color: #475569;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.goal-item li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.values-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.value-item {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+}
+
+.value-item h3 {
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+}
+
+.value-item p {
+    color: #64748b;
+}
+
+.fun-facts {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .fun-facts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.fact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+}
+
+.fact-item i {
+    color: #3b82f6;
+    font-size: 1.5rem;
+}
+
+.cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    margin-bottom: 2rem;
+}
+
+.cta-description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
