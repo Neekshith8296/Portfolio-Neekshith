@@ -9,7 +9,7 @@ if (contactForm) {
         const data = Object.fromEntries(formData);
 
         // Simple validation
-        if (!data.firstName || !data.lastName || !data.email || !data.subject || !data.message) {
+        if (!data.firstName || !data.email || !data.subject || !data.message) {
             showNotification('Please fill in all required fields.', 'error');
             return;
         }
