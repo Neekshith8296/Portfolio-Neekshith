@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Active link set:', href);
             }
         });
+
+        // Highlight the "Download CV" button if on home page
+        // Fixed invalid selector by using a different approach
+        const downloadCVButton = Array.from(document.querySelectorAll('a')).find(a => a.textContent.trim() === 'Download CV');
+        if (currentPage === 'home' && downloadCVButton) {
+            downloadCVButton.classList.add('active');
+        } else if (downloadCVButton) {
+            downloadCVButton.classList.remove('active');
+        }
     }
 
     // Expose updateActiveNav globally for other scripts to call
