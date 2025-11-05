@@ -7,86 +7,6 @@
     <meta http-equiv="Pragma" content="cache" />
     <meta http-equiv="Expires" content="31536000" />
     <title id="page-title">Neekshith - Student Portfolio</title>
-    <meta id="page-description" name="description" content="Portfolio of Neekshith - Computer Science Student passionate about web development and creating innovative digital solutions." />
-    <meta name="keywords" content="Neekshith, portfolio, computer science student, web development, JavaScript, React, Java, Python, Bangalore" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Neekshith" />
-    <link id="canonical-url" rel="canonical" href="https://neekshith-portfolio.com/" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" id="og-url" content="https://neekshith-portfolio.com/" />
-    <meta property="og:title" id="og-title" content="Neekshith - Student Portfolio" />
-    <meta property="og:description" id="og-description" content="Portfolio of Neekshith - Computer Science Student passionate about web development and creating innovative digital solutions." />
-    <meta property="og:image" content="https://neekshith-portfolio.com/assets/profile-image.jpg" />
-    <meta property="og:site_name" content="Neekshith Portfolio" />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" id="twitter-url" content="https://neekshith-portfolio.com/" />
-    <meta property="twitter:title" id="twitter-title" content="Neekshith - Student Portfolio" />
-    <meta property="twitter:description" id="twitter-description" content="Portfolio of Neekshith - Computer Science Student passionate about web development and creating innovative digital solutions." />
-    <meta property="twitter:image" content="https://neekshith-portfolio.com/assets/profile-image.jpg" />
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Neekshith",
-        "jobTitle": "Computer Science Student",
-        "description": "Computer Science Student passionate about web development and creating innovative digital solutions.",
-        "url": "https://neekshith-portfolio.com/",
-        "sameAs": [
-            "https://github.com/Neekshith8296",
-            "https://www.linkedin.com/in/neekshith-s-8596452a1"
-        ],
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Bangalore",
-            "addressCountry": "India"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+91-98765-43210",
-            "email": "neekshith8296@gmail.com",
-            "contactType": "personal"
-        },
-        "knowsAbout": [
-            "Web Development",
-            "JavaScript",
-            "React",
-            "Java",
-            "Python",
-            "Computer Science"
-        ],
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "ABC University"
-        }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Neekshith Portfolio",
-        "url": "https://neekshith-portfolio.com/",
-        "description": "Portfolio website of Neekshith - Computer Science Student showcasing web development projects and skills.",
-        "founder": {
-            "@type": "Person",
-            "name": "Neekshith"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+91-98765-43210",
-            "email": "neekshith8296@gmail.com",
-            "contactType": "customer service"
-        }
-    }
-    </script>
 
     <link rel="stylesheet" href="css/base.css?v=1.0.2" />
     <link rel="stylesheet" href="css/header.css?v=1.0.2" />
@@ -129,12 +49,26 @@
 
                 // Get form data
                 const formData = new FormData(this);
+                console.log('Form data entries:', Array.from(formData.entries()));
+                const firstName = formData.get('firstName');
+                const lastName = formData.get('lastName');
+                const email = formData.get('email');
+                const subject = formData.get('subject');
+                const message = formData.get('message');
+
+                console.log('Extracted values:', { firstName, lastName, email, subject, message });
+
+                // Validate required fields
+                if (!firstName || !email || !subject || !message) {
+                    showNotification('Please fill in all required fields.', 'error');
+                    return;
+                }
+
                 const templateParams = {
-                    name: formData.get('firstName') + ' ' + formData.get('lastName'),
-                    from_email: formData.get('email'),
-                    subject: formData.get('subject'),
-                    message: formData.get('message'),
-                    to_email: 'neekshith8296@gmail.com'
+                    name: firstName + ' ' + lastName,
+                    from_email: email,
+                    subject: subject,
+                    message: message
                 };
 
                 // Show loading state
@@ -144,7 +78,8 @@
                 submitBtn.disabled = true;
 
                 // Send email using EmailJS
-                emailjs.send('service_zs2031l', 'template_39wuvsf', templateParams, 'G9r1S6wv9We_pA0Dg')
+                console.log('Sending email with params:', templateParams);
+                emailjs.send('service_pmk26ps', 'template_39wuvsf', templateParams, 'G9r1S6wv9We_pA0Dg')
                     .then(function(response) {
                         console.log('SUCCESS!', response.status, response.text);
                         // Show success message
@@ -226,23 +161,9 @@
                 }
             };
 
-            // Update page title and meta
+            // Update page title
             const config = pageConfig[currentPage] || pageConfig.home;
             document.getElementById('page-title').textContent = config.title;
-            document.getElementById('page-description').content = config.description;
-
-            // Update canonical URL
-            document.getElementById('canonical-url').href = config.url;
-
-            // Update Open Graph meta tags
-            document.getElementById('og-url').content = config.url;
-            document.getElementById('og-title').content = config.title;
-            document.getElementById('og-description').content = config.description;
-
-            // Update Twitter meta tags
-            document.getElementById('twitter-url').content = config.url;
-            document.getElementById('twitter-title').content = config.title;
-            document.getElementById('twitter-description').content = config.description;
 
             // Load header component
             fetch('components/header.html?v=1.0.2')
@@ -258,14 +179,21 @@
                     document.getElementById('main-content').innerHTML = data;
                     // Initialize contact form and FAQ if on contact page
                     if (currentPage === 'contact') {
-                        // Wait a bit for DOM to update
-                        setTimeout(() => {
-                            if (typeof window.initializeFAQ === 'function') {
-                                window.initializeFAQ();
+                        // Wait for DOM to update and form to be available
+                        const checkForm = () => {
+                            const contactForm = document.getElementById('contactForm');
+                            if (contactForm) {
+                                if (typeof window.initializeFAQ === 'function') {
+                                    window.initializeFAQ();
+                                }
+                                // Initialize contact form
+                                initializeContactForm();
+                            } else {
+                                // Retry after a short delay
+                                setTimeout(checkForm, 50);
                             }
-                            // Initialize contact form
-                            initializeContactForm();
-                        }, 100);
+                        };
+                        checkForm();
                     }
                 });
 
